@@ -10,7 +10,7 @@ LOCATION = st.selectbox("選擇城市", ["Taipei", "Taichung", "Kaohsiung"])
 
 # 組合 API 網址
 url = f"https://opendata.cwa.gov.tw/api/v1/rest/datastore/F-C0032-001?Authorization={API_KEY}&locationName={LOCATION}"
-res = requests.get(url)
+res = requests.get(url, verify=False)
 data = res.json()
 
 # 解析 JSON 資料
@@ -23,4 +23,5 @@ for element in location["weatherElement"]:
     value = element["time"][0]["parameter"]["parameterName"]
 
     st.write(f"{name} : {value}")
+
 
